@@ -1,6 +1,11 @@
+// import 'package:bank_sampah/Model/user.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class input_data extends StatelessWidget {
+  final controllerNamaBankSampah = TextEditingController();
+  final controllerNamaNasabah = TextEditingController();
+  final controllerNamaPetugas = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,6 +93,7 @@ class input_data extends StatelessWidget {
                     child: SizedBox(
                       width: 270,
                       child: TextFormField(
+                        controller: controllerNamaBankSampah,
                         decoration: InputDecoration(
                             hintText: "Masukkan nama bank sampah"),
                       ),
@@ -116,6 +122,7 @@ class input_data extends StatelessWidget {
                     child: SizedBox(
                       width: 270,
                       child: TextFormField(
+                        controller: controllerNamaPetugas,
                         decoration:
                             InputDecoration(hintText: "Masukkan nama Petugas"),
                       ),
@@ -144,6 +151,7 @@ class input_data extends StatelessWidget {
                     child: SizedBox(
                       width: 270,
                       child: TextFormField(
+                        controller: controllerNamaNasabah,
                         decoration:
                             InputDecoration(hintText: "Masukkan nama Nasabah"),
                       ),
@@ -152,41 +160,45 @@ class input_data extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
-                  Row(
+                  Column(
                     children: [
-                      Container(
-                        margin: EdgeInsets.symmetric(horizontal: 15),
-                        height: 44,
-                        width: 271,
-                        decoration: BoxDecoration(
-                            color: Color(0xffD9D9D9),
-                            borderRadius: BorderRadius.circular(5)),
-                        child: Row(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.symmetric(horizontal: 15),
-                              padding: EdgeInsets.symmetric(horizontal: 5),
-                              child: Text(
-                                'Pilih Tanggal',
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.normal),
-                              ),
+                      Row(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: 15),
+                            height: 44,
+                            width: 271,
+                            decoration: BoxDecoration(
+                                color: Color(0xffD9D9D9),
+                                borderRadius: BorderRadius.circular(5)),
+                            child: Row(
+                              children: [
+                                Container(
+                                  margin: EdgeInsets.symmetric(horizontal: 15),
+                                  padding: EdgeInsets.symmetric(horizontal: 5),
+                                  child: Text(
+                                    'Pilih Tanggal',
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.normal),
+                                  ),
+                                ),
+                                Spacer(),
+                                InkWell(
+                                    onTap: () {
+                                      showDatePicker(
+                                        context: context,
+                                        initialDate: DateTime.now(),
+                                        firstDate: DateTime(2000),
+                                        lastDate: DateTime(2099),
+                                      );
+                                    },
+                                    child: Icon(
+                                        Icons.keyboard_arrow_down_outlined)),
+                              ],
                             ),
-                            Spacer(),
-                            InkWell(
-                                onTap: () {
-                                  showDatePicker(
-                                    context: context,
-                                    initialDate: DateTime.now(),
-                                    firstDate: DateTime(2000),
-                                    lastDate: DateTime(2099),
-                                  );
-                                },
-                                child:
-                                    Icon(Icons.keyboard_arrow_down_outlined)),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -198,6 +210,14 @@ class input_data extends StatelessWidget {
         SizedBox(height: 55),
         Center(
           child: InkWell(
+            // onTap: () async {
+            //   final user = User(
+            //       NamaBankSampah: controllerNamaBankSampah.text,
+            //       NamaPetugas: controllerNamaPetugas.text,
+            //       NamaNasbah: controllerNamaNasabah.text);
+            //   createUser(user);
+            //   Navigator.pushNamed(context, '/input-data-kategori');
+            // },
             onTap: () => Navigator.pushNamed(context, '/input-data-kategori'),
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 15),
@@ -223,4 +243,11 @@ class input_data extends StatelessWidget {
       ]),
     );
   }
+
+  // Future createUser(User user) async {
+  //   final docUser = FirebaseFirestore.instance.collection('users').doc();
+  //   user.id = docUser.id;
+  //   final json = user.toJson();
+  //   await docUser.set(json);
+  // }
 }

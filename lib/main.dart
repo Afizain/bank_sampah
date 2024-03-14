@@ -1,9 +1,14 @@
 import 'package:bank_sampah/pages/InputDataKategori.dart';
+import 'package:bank_sampah/pages/coba.dart';
 import 'package:bank_sampah/pages/home_page.dart';
 import 'package:bank_sampah/pages/input_data.dart';
+import 'package:bank_sampah/pages/success_page.dart';
+// import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -18,9 +23,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(scaffoldBackgroundColor: Colors.white),
       debugShowCheckedModeBanner: false,
       routes: {
-        "/": (context) => home_page(),
+        "/home": (context) => home_page(),
         "/input-data": (context) => input_data(),
-        "/input-data-kategori": (context) => InputDataKategori(),
+        "/cobaa": (context) => InputDataDetail(),
+        "/success-page": (context) => success_page(),
+        "/": (context) => MyForm(),
       },
     );
   }
