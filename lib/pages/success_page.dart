@@ -1,4 +1,8 @@
+// import 'package:bank_sampah/pdf/handle.dart';
+// import 'package:bank_sampah/pdf/pdfView.dart';
+// import 'package:pdf/pdf.dart';
 import 'package:flutter/material.dart';
+// import 'package:pdf/widgets.dart' as pw;
 
 class success_page extends StatelessWidget {
   @override
@@ -62,16 +66,23 @@ class success_page extends StatelessWidget {
           Column(
             children: [
               SizedBox(height: 140),
-              Container(
-                height: 43,
-                width: 178,
-                decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    border: Border.all(width: 1),
-                    borderRadius: BorderRadius.circular(15)),
-                child: Icon(
-                  Icons.share,
-                  size: 35,
+              InkWell(
+                onTap: () async {
+                  // final pdfFile = await PdfInvoiceApi.generate(
+                  //     PdfColors.black, pw.Font.courier());
+                  // FileHandleApi.openFile(pdfFile);
+                },
+                child: Container(
+                  height: 43,
+                  width: 178,
+                  decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      border: Border.all(width: 1),
+                      borderRadius: BorderRadius.circular(15)),
+                  child: Icon(
+                    Icons.share,
+                    size: 35,
+                  ),
                 ),
               ),
             ],
